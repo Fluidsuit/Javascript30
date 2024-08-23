@@ -148,7 +148,6 @@ console.table(oldest);
 
 
 
-
 //6
 //Sort exercise
 //sort the people alphabatecally by the last name
@@ -185,6 +184,7 @@ console.log(alpha)
 //     'Blair, Tony',         'Blair, Robert',
 //     'Blake, A William'
 //   ]
+
 
 
 
