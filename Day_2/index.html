@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Drum_kit</title>
+</head>
+<body>
+    <div class="keys">
+        <div data-key="65" class="key">
+            <kbd>A</kbd>
+            <samp class="sound">clap</samp>
+        </div>
+        <div data-key="83" class="key">
+            <kbd>S</kbd>
+            <samp class="sound">hihat</samp>
+        </div>
+        <div data-key="68" class="key">
+            <kbd>D</kbd>
+            <samp class="sound">kick</samp>
+        </div>
+        <div data-key="70" class="key">
+            <kbd>F</kbd>
+            <samp class="sound">openhat</samp>
+        </div>
+        <div data-key="71" class="key">
+            <kbd>G</kbd>
+            <samp class="sound">boom</samp>
+        </div>
+        <div data-key="72" class="key">
+            <kbd>H</kbd>
+            <samp class="sound">ride</samp>
+        </div>    
+        <div data-key="74" class="key">
+            <kbd>A</kbd>
+            <samp class="sound">snare</samp>
+        </div>
+        <div data-key="75" class="key">
+            <kbd>A</kbd>
+            <samp class="sound">tom</samp>
+        </div>
+        <div data-key="76" class="key">
+            <kbd>A</kbd>
+            <samp class="sound">tink</samp>
+        </div>
+    </div>
+<audio data-key="65" src="Sound/clap.mp3"></audio>
+<audio data-key="83" src="Sound/hihat.mp3"></audio>
+<audio data-key="68" src="Sound/kick.mp3"></audio>
+<audio data-key="70" src="Sound/openhat.mp3"></audio>
+<audio data-key="71" src="Sound/boom.mp3"></audio>
+<audio data-key="72" src="Sound/ridemp3.mp3"></audio>
+<audio data-key="74" src="Sound/snare.mp3"></audio>
+<audio data-key="75" src="Sound/tom.mp3"></audio>
+<audio data-key="76" src="Sound/tink.mp3"></audio>
+</body>
+</html>
+
+
+
+<script>
+    window.addEventListener('keydown',function(e){
+        // console.log(e.keyCode)
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        if(!audio) return; // stop the  function from running all together
+        audio.currentTime = 0; // rewind to the start
+        audio.play();   
+        key.classList.add('playing');
+});
+</script>
+
+
