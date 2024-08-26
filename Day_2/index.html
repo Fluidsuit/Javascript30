@@ -7,6 +7,7 @@
     <title>Drum_kit</title>
 </head>
 <body>
+
     <div class="keys">
         <div data-key="65" class="key">
             <kbd>A</kbd>
@@ -33,15 +34,15 @@
             <samp class="sound">ride</samp>
         </div>    
         <div data-key="74" class="key">
-            <kbd>A</kbd>
+            <kbd>J</kbd>
             <samp class="sound">snare</samp>
         </div>
         <div data-key="75" class="key">
-            <kbd>A</kbd>
+            <kbd>K</kbd>
             <samp class="sound">tom</samp>
         </div>
         <div data-key="76" class="key">
-            <kbd>A</kbd>
+            <kbd>L</kbd>
             <samp class="sound">tink</samp>
         </div>
     </div>
@@ -57,18 +58,60 @@
 </body>
 </html>
 
+<style>
+.keys {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 75vh; 
+    margin: 10px; 
+    background: transparent;
+} 
 
+.key{
+    font-size: 110px;
+    width: 400px; 
+    height: 400px; 
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.key kbd{
+    font-size: 150px;
+}
+
+body{
+  background-image: url("https://images.unsplash.com/photo-1483428400520-675ef69a3bc4?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+  height: 100vh; 
+  margin: 10px; 
+}
+
+
+</style>
 
 <script>
-    window.addEventListener('keydown',function(e){
-        // console.log(e.keyCode)
+function plauSound(e){
         const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
         const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
         if(!audio) return; // stop the  function from running all together
         audio.currentTime = 0; // rewind to the start
         audio.play();   
         key.classList.add('playing');
-});
+}
+function removeTransition(e){
+    if (e.propertyName !== 'transform') return; //skip if it's not a transform
+    this.classList.remove('playing');
+}
+
+const keys = document.querySelectorAll('.key');
+keys.forEach(key => key.addEventListener('transitionend',removeTransition));
+window.addEventListener('keydown',plauSound);
 </script>
 
 
